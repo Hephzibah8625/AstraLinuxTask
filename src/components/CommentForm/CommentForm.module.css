@@ -1,0 +1,16 @@
+.form {
+    padding: 25px;
+    border: 1px solid white;
+}
+
+.form__select {
+    display: flex;
+    gap: 5px;
+}
+
+.form__button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
