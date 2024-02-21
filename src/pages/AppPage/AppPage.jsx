@@ -1,22 +1,49 @@
-import { useState } from "react";
-import { CommentsList, CommentForm, ApiPanel } from "../../components";
+import { useState, useEffect } from "react";
+import { CommentsList, CommentForm, ApiPanel, BarChart } from "../../components";
+import { useComments } from "../../hooks/useComments";
+import { priorityValues } from "../../helpers/PriorityTypes";
+import { getConvertedTime } from "../../helpers/DateFunctions";
 import classes from "./AppPage.module.css";
 import data from "../../helpers/CommentsData";
-import { priorityValues } from  "../../helpers/PriorityTypes";
+
+const APILink = "https://www.boredapi.com/api/activity";
 
 const AppPage = () => {
   const [comments, setComments] = useState(data);
+  const [activity, setActivity] = useState({});
+  const sortedComments = useComments(comments);
 
-  const sortedComments = [...comments].sort((a, b) => {
-    if (a.createdAt === b.createdAt) {
-      return priorityValues[b.priority] - priorityValues[a.priority];
-    }
-    return b.createdAt - a.createdAt;
-  });
+  useEffect(() => {
+    fetch(APILink, {method: 'GET'})
+    .then((res) => res.json())
+    .then((data) => setActivity(data));
+  }, []);
+
+  const prepareChartData = (priority) => {
+    const data = sortedComments
+      .filter((c) => c.priority === priority)
+      .reduce((prev, curr) => {
+        if (!prev[curr.createdAt]) {
+          prev[curr.createdAt] = 0;
+        }
+        prev[curr.createdAt] += 1;
+        return prev;
+      }, {});
+    
+    return {
+      labels: Object.keys(data).map((d) => getConvertedTime(Number(d))),
+      datasets: [
+        {
+          label: '',
+          data: Object.values(data),
+        }
+      ],
+    };
+  };
 
   const createComment = (newComent) => {
     setComments([...comments, newComent]);
-  }
+  };
 
   const removeComment = (commentId) => {
     setComments(comments.filter((c) => c.id !== commentId));
@@ -24,7 +51,7 @@ const AppPage = () => {
 
   const updateComment = (commentId, newComment) => {
     setComments([...comments.filter((c) => c.id !== commentId), newComment]);
-  }
+  };
 
   return (
     <div className={classes.appPage}>
@@ -33,7 +60,10 @@ const AppPage = () => {
         <CommentsList remove={removeComment} update={updateComment} comments={sortedComments} />
       </div>
       <div className={classes.appPage__analyticsSection}>
-        <ApiPanel />
+        <ApiPanel activity={activity} link={APILink} />
+        {Object.keys(priorityValues).map((p) =>
+          <BarChart data={prepareChartData(p)} key={p} />
+        )}
       </div>
     </div>
   )

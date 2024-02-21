@@ -1,0 +1,7 @@
+.apiPanel {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid white;
+  padding: 2rem;
+  text-align: center;
+}
