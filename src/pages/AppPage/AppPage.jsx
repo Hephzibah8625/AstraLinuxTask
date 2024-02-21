@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CommentsList, CommentForm } from "../../components";
+import { CommentsList, CommentForm, ApiPanel } from "../../components";
 import classes from "./AppPage.module.css";
 import data from "../../helpers/CommentsData";
 import { priorityValues } from  "../../helpers/PriorityTypes";
@@ -22,10 +22,19 @@ const AppPage = () => {
     setComments(comments.filter((c) => c.id !== commentId));
   };
 
+  const updateComment = (commentId, newComment) => {
+    setComments([...comments.filter((c) => c.id !== commentId), newComment]);
+  }
+
   return (
-    <div className={classes.commentsSection}>
-      <CommentForm create={createComment} />
-      <CommentsList remove={removeComment} comments={sortedComments} />
+    <div className={classes.appPage}>
+      <div className={classes.appPage__commentsSection}>
+        <CommentForm create={createComment} />
+        <CommentsList remove={removeComment} update={updateComment} comments={sortedComments} />
+      </div>
+      <div className={classes.appPage__analyticsSection}>
+        <ApiPanel />
+      </div>
     </div>
   )
 };

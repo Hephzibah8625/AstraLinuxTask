@@ -53,23 +53,25 @@ const LoginPage = () => {
   }
   
   return (
-    <div className={classes.login}>
-      <InputWithLabel
-        value={login}
-        onChange={e => setLogin(e.target.value)}
-        label="Логин"
-        type="text"
-        placeholder="Введите email"
-      />
-      <InputWithLabel
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-        label="Пароль"
-        type="password"
-        placeholder="Введите пароль"
-      />
-      <div ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{ errMsg }</div>
-      <CustomButton onClick={signIn}>Войти</CustomButton>
+    <div className={classes.loginPage}>
+      <div className={classes.loginForm}>
+        <InputWithLabel
+          value={login}
+          onChange={e => setLogin(e.target.value)}
+          label="Логин"
+          type="text"
+          placeholder="Введите email"
+        />
+        <InputWithLabel
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          label="Пароль"
+          type="password"
+          placeholder="Введите пароль"
+        />
+        <div ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{ errMsg }</div>
+        <CustomButton onClick={signIn}>Войти</CustomButton>
+      </div>
     </div>
   );
 }

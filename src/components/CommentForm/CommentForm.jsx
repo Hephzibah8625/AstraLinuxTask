@@ -2,6 +2,7 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { CustomButton, CustomTextarea } from "../../UI";
 import { priorityTranslates } from "../../helpers/PriorityTypes";
+import { getStartOfDay } from "../../helpers/DateFunctions";
 import classes from "./CommentForm.module.css"
 
 const CommentForm = ({create}) => {
@@ -12,13 +13,10 @@ const CommentForm = ({create}) => {
   const addNewComment = (e) => {
     e.preventDefault();
 
-    const startOfDay = new Date();
-    startOfDay.setUTCHours(0, 0, 0, 0);
-
     const newComment = {
       ...comment,
       id: Date.now(),
-      createdAt: startOfDay.getTime(),
+      createdAt: getStartOfDay(),
       author: auth?.username,
     };
     create(newComment);
