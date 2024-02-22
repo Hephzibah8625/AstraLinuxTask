@@ -4,8 +4,8 @@ import InputWithLabel from "./inputWithLabel/InputWithLabel";
 import Loader from "./loader/Loader";
 
 export {
-    CustomButton,
-    CustomTextarea,
-    InputWithLabel,
-    Loader,
+  CustomButton,
+  CustomTextarea,
+  InputWithLabel,
+  Loader,
 };

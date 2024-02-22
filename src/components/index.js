@@ -5,9 +5,9 @@ import ApiPanel from "./apiPanel/ApiPanel";
 import BarChart from "./barChart/BarChart";
 
 export {
-    CommentItem,
-    CommentsList,
-    CommentForm,
-    ApiPanel,
-    BarChart,
+  CommentItem,
+  CommentsList,
+  CommentForm,
+  ApiPanel,
+  BarChart,
 };
