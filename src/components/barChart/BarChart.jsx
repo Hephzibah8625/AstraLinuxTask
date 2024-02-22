@@ -1,15 +1,19 @@
 import { Bar } from "react-chartjs-2";
 import { Chart as Chartjs } from "chart.js/auto";
 
-const options = {
-  plugins: {
-    legend: {
-      display: false,
+const BarChart = ({data, title}) => {
+  const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: title,
+      },
     },
-  },
-};
+  };
 
-const BarChart = ({data}) => {
   return (
     <>
       {

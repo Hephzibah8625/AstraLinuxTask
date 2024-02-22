@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { CommentsList, CommentForm, ApiPanel, BarChart } from "../../components";
 import { useComments } from "../../hooks/useComments";
 import { useFetching } from "../../hooks/useFetching";
-import { priorityValues } from "../../helpers/priorityTypes";
+import { priorityTranslates } from "../../helpers/priorityTypes";
 import { getConvertedTime } from "../../helpers/dateFunctions";
 import ActivityService from "../../API/ActivityService";
 import classes from "./AppPage.module.css";
@@ -63,8 +63,12 @@ const AppPage = () => {
       </div>
       <div className={classes.appPage__analyticsSection}>
         <ApiPanel activity={activity} link={ActivityService.APILink} isLoading={isActivityLoading}/>
-        {Object.keys(priorityValues).map((p) =>
-          <BarChart data={prepareChartData(p)} key={p} />
+        {Object.keys(priorityTranslates).map((p) =>
+          <BarChart
+            key={p}
+            data={prepareChartData(p)}
+            title={`${priorityTranslates[p]} приоритет`}
+          />
         )}
       </div>
     </div>
