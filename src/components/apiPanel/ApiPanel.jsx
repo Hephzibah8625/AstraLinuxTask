@@ -1,10 +1,19 @@
+import { Loader } from "../UI";
 import classes from "./ApiPanel.module.css";
 
-const ApiPanel = ({activity, link}) => {
+const ApiPanel = ({isLoading, activity, link}) => {
   return (
     <div className={classes.apiPanel}>
-      <div>Name: {link}</div>
-      <div>Result: {activity.key}</div>
+      {
+        isLoading ?
+          <Loader />
+        : (
+          <>
+            <div>Name: {link}</div>
+            <div>Result: {activity.key}</div>
+          </>
+        )
+      }
     </div>
   );
 };

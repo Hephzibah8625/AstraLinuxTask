@@ -1,22 +1,24 @@
 import { useState, useEffect } from "react";
 import { CommentsList, CommentForm, ApiPanel, BarChart } from "../../components";
 import { useComments } from "../../hooks/useComments";
+import { useFetching } from "../../hooks/useFetching";
 import { priorityValues } from "../../helpers/priorityTypes";
 import { getConvertedTime } from "../../helpers/dateFunctions";
+import ActivityService from "../../API/ActivityService";
 import classes from "./AppPage.module.css";
 import data from "../../helpers/commentsData";
-
-const APILink = "https://www.boredapi.com/api/activity";
 
 const AppPage = () => {
   const [comments, setComments] = useState(data);
   const [activity, setActivity] = useState({});
   const sortedComments = useComments(comments);
+  const [fetchActivity, isActivityLoading] = useFetching(async () => {
+    const activity =  await ActivityService.get();
+    setActivity(activity);
+  });
 
   useEffect(() => {
-    fetch(APILink, {method: 'GET'})
-    .then((res) => res.json())
-    .then((data) => setActivity(data));
+    fetchActivity();
   }, []);
 
   const prepareChartData = (priority) => {
@@ -60,7 +62,7 @@ const AppPage = () => {
         <CommentsList remove={removeComment} update={updateComment} comments={sortedComments} />
       </div>
       <div className={classes.appPage__analyticsSection}>
-        <ApiPanel activity={activity} link={APILink} />
+        <ApiPanel activity={activity} link={ActivityService.APILink} isLoading={isActivityLoading}/>
         {Object.keys(priorityValues).map((p) =>
           <BarChart data={prepareChartData(p)} key={p} />
         )}
