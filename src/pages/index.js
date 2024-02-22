@@ -1,5 +1,5 @@
-import AppPage from "./AppPage/AppPage";
-import LoginPage from "./LoginPage/LoginPage";
+import AppPage from "./appPage/AppPage";
+import LoginPage from "./loginPage/LoginPage";
 
 export {
     AppPage,

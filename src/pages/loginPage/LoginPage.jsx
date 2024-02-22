@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { InputWithLabel, CustomButton } from "../../UI/index";
+import { InputWithLabel, CustomButton } from "../../components/UI";
 import classes from "./LoginPage.module.css";
 
 const authFunction = async (login, password) => {

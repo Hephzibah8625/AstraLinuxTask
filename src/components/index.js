@@ -1,6 +1,6 @@
-import CommentItem from "./CommentItem/CommentItem";
-import CommentsList from "./CommentsList/CommentsList";
-import CommentForm from "./CommentForm/CommentForm";
+import CommentItem from "./commentItem/CommentItem";
+import CommentsList from "./commentsList/CommentsList";
+import CommentForm from "./commentForm/CommentForm";
 import ApiPanel from "./apiPanel/ApiPanel";
 import BarChart from "./barChart/BarChart";
 

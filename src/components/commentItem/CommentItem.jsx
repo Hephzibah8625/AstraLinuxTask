@@ -1,9 +1,9 @@
-import useAuth from "../../hooks/useAuth";
-import classes from "./CommentItem.module.css";
-import {  CustomButton, CustomTextarea } from "../../UI";
-import { priorityTranslates } from "../../helpers/PriorityTypes";
-import { getStartOfDay, getConvertedTime } from "../../helpers/DateFunctions";
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import {  CustomButton, CustomTextarea } from "../UI";
+import { priorityTranslates } from "../../helpers/priorityTypes";
+import { getStartOfDay, getConvertedTime } from "../../helpers/dateFunctions";
+import classes from "./CommentItem.module.css";
 
 const CommentItem = (props) => {
   const { auth } = useAuth();

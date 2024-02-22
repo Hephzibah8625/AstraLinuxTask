@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { priorityValues } from "../helpers/PriorityTypes";
+import { priorityValues } from "../helpers/priorityTypes";
 
 export const useComments= (comments) => {
   return useMemo(() => {

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { CustomButton, CustomTextarea } from "../../UI";
-import { priorityTranslates } from "../../helpers/PriorityTypes";
-import { getStartOfDay } from "../../helpers/DateFunctions";
+import { CustomButton, CustomTextarea } from "../UI";
+import { priorityTranslates } from "../../helpers/priorityTypes";
+import { getStartOfDay } from "../../helpers/dateFunctions";
 import classes from "./CommentForm.module.css"
 
 const CommentForm = ({create}) => {
@@ -32,7 +32,11 @@ const CommentForm = ({create}) => {
       <div className={classes.form__button}>
         <div className={classes.form__select}>
           <label htmlFor="priority">Приоритет: </label>
-          <select id="priority" value={comment.priority} onChange={e => setComment({...comment, priority: e.target.value})}>
+          <select
+            id="priority"
+            value={comment.priority}
+            onChange={e => setComment({...comment, priority: e.target.value})}
+          >
             {Object.entries(priorityTranslates).map(([key, value], index) =>
               <option value={key} key={index}>{ value }</option>
             )}

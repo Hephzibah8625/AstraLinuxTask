@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { CommentsList, CommentForm, ApiPanel, BarChart } from "../../components";
 import { useComments } from "../../hooks/useComments";
-import { priorityValues } from "../../helpers/PriorityTypes";
-import { getConvertedTime } from "../../helpers/DateFunctions";
+import { priorityValues } from "../../helpers/priorityTypes";
+import { getConvertedTime } from "../../helpers/dateFunctions";
 import classes from "./AppPage.module.css";
-import data from "../../helpers/CommentsData";
+import data from "../../helpers/commentsData";
 
 const APILink = "https://www.boredapi.com/api/activity";
 
