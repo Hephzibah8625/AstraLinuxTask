@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { InputWithLabel, CustomButton } from "../../components/UI";
@@ -27,12 +27,14 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
-
-  const errRef = useRef();
   
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
+
+  const submitDisabled = useMemo(() => {
+    return !login.length || !password.length;
+  }, [login, password]);
 
   useEffect(() => {
     setErrMsg('');
@@ -69,8 +71,12 @@ const LoginPage = () => {
           type="password"
           placeholder="Введите пароль"
         />
-        <div ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{ errMsg }</div>
-        <CustomButton onClick={signIn}>Войти</CustomButton>
+        <div
+          className={errMsg ? classes.errMessage : classes.errMessage_hidden}
+        >
+          { errMsg }
+        </div>
+        <CustomButton disabled={submitDisabled} onClick={signIn}>Войти</CustomButton>
       </div>
     </div>
   );

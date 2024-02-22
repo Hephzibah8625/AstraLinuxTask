@@ -1,8 +1,28 @@
-# React + Vite
+# AstraLinux Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Available on: [GithubPages](https://hephzibah8625.github.io/AstraLinuxTask/)
 
-Currently, two official plugins are available:
+ ### Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ Node version: 20.11.0
+
+ ### Running the application
+
+ Dev:
+
+ ```bash
+ npm run dev
+ ```
+
+ Build:
+
+ ```bash
+ npm run build
+ ```
+
+ ### Available Users
+
+| Login | Password |
+|:-----:|:--------:|
+| user  |    123   |
+| admin |    123   |

@@ -11,6 +11,14 @@
   width: 100%;
   padding: 2rem;
   text-align: center;
-  border: 1px solid white;
+  border: 1px solid black;
 }
-  
+
+.errMessage {
+  color: lightcoral;
+  margin: 10px;
+}
+
+.errMessage_hidden {
+  display: none;
+}

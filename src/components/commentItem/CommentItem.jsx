@@ -42,7 +42,7 @@ const CommentItem = (props) => {
             <CustomTextarea value={newCommentText} onChange={(e) => setNewCommentText(e.target.value)} />
           )
           : (
-            <pre>
+            <pre className={classes.comment__text}>
               { props.comment }
             </pre>
           )
